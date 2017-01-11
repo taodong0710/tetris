@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>换吧网络</title>
+    <meta name="description" content="换吧网络">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="./scripts/app/index.js"></script>
+  </head>
+  <body>
+    <audio id="audioStart" src="sounds/tetrisStart.mp3" autoplay="true"></audio>
+    <audio id="audioFail" src="sounds/tetrisFail.mp3" autoplay="no"></audio>
+    <audio id="audioDown" src="sounds/tetrisDown.mp3" autoplay="no"></audio>
+    <audio id="audioClear" src="sounds/tetrisClear.mp3" autoplay="no"></audio>
+    <div class="section-cover"></div>
+    <section>
+      <div id="show">
+        <div class="left-part">
+          <div class="box">
+            <div class="part-Z">
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+            </div>
+            <div class="part-T1">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+            </div>
+            <div class="part-O">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+            <div class="part-T2">
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+            <div class="part-L">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+            <div class="part-I">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mid-part">
+          <div class="title">
+            <div class="title-block"></div>
+            <div class="title-block"></div>
+            <div class="title-block"></div>
+            <div class="title-block"></div>
+            <p>换</p>
+            <p>吧</p>
+            <p>网</p>
+            <p>络</p>
+            <p>科</p>
+            <p>技</p>
+            <div class="title-block"></div>
+            <div class="title-block"></div>
+            <div class="title-block"></div>
+            <div class="title-block"></div>
+          </div>
+          <div class="border">
+            <div class="heightLight-border">
+              <div class="deep-border">
+                <div class="draw">
+                  <div class="draw-cover">
+                    <div class="draw-cover-txt">换吧网络</div>
+                  </div>
+                  <div class="leveladd-cover">等级提升</div>
+                  <canvas id="mycanvas" width="111" height="221"></canvas>
+                </div>
+                <div class="game-message">
+                  <div id="score">
+                    <div class="msg-title">HI-SCORE</div>
+                    <div class="score">
+                      <div class="bg nb">888888</div>
+                      <div class="number nb">0</div>
+                    </div>
+                  </div>
+                  <div id="lines">
+                    <div class="msg-title">LINES</div>
+                    <div class="lines">
+                      <div class="bg nb">888888</div>
+                      <div class="number nb">0</div>
+                    </div>
+                  </div>
+                  <div id="level">
+                    <div class="msg-title">LEVEL</div>
+                    <div class="level">
+                      <div class="bg nb">8</div>
+                      <div class="number nb">1</div>
+                    </div>
+                  </div>
+                  <div id="next">
+                    <div class="msg-title">NEXT</div>
+                    <div class="next">
+                      <div class="bg">
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                        <div class="diamonds-box">
+                          <div class="diamonds"></div>
+                        </div>
+                      </div>
+                      <div class="content">
+                        <div class="part-show part-0">
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                        </div>
+                        <div class="part-show part-1">
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                        </div>
+                        <div class="part-show part-2">
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                        </div>
+                        <div class="part-show part-3">
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                        </div>
+                        <div class="part-show part-4">
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                        </div>
+                        <div class="part-show part-5">
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                        </div>
+                        <div class="part-show part-6">
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="block"></div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="block"></div>
+                        </div>
+                        <div class="part-show part-7">
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                          <div class="diamonds-box">
+                            <div class="diamonds"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="bottom-msg">
+                    <div class="sound">
+                      <div class="icon-mute bg"></div>
+                      <div class="icon-mute txt"></div>
+                    </div>
+                    <div class="pause">
+                      <div class="icon-pause bg"></div>
+                      <div class="icon-pause txt"></div>
+                    </div>
+                    <div class="time"><span class="nb hours"></span><span class="nb point">:</span><span class="nb minutes"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="right-part">
+          <div class="box">
+            <div class="part-Z">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+            <div class="part-T2">
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+            <div class="part-O">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+            <div class="part-T1">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+            </div>
+            <div class="part-L">
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+            </div>
+            <div class="part-I">
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+              <div class="block"></div>
+              <div class="diamonds-box">
+                <div class="diamonds"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="heightBlock"><img src="images/fengge.png"></div>
+      <div id="operation">
+        <div class="left-part">
+          <ul>
+            <li class="blue" id="rotate">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">
+                <p>变换</p>
+              </div>
+            </li>
+            <li class="blue" id="left">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">
+                <p>左移</p>
+              </div>
+            </li>
+            <li class="direction">
+              <div class="content">
+                <div class="top-block"></div>
+                <div class="left-block"></div>
+                <div class="right-block"></div>
+                <div class="bottom-block"></div>
+              </div>
+            </li>
+            <li class="blue" id="right">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">
+                <p>右移</p>
+              </div>
+            </li>
+            <li class="blue" id="down">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">
+                <p>下落</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="right-part">
+          <ul>
+            <li class="red" id="peset">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">复位</div>
+            </li>
+            <li class="green" id="sound">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">声音</div>
+            </li>
+            <li class="green" id="pasueStart">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">暂停</div>
+            </li>
+            <li class="pink" id="options">
+              <div class="bg">
+                <div class="pic-cover"></div>
+                <div class="pic"></div>
+              </div>
+              <div class="txt">分享</div>
+            </li>
+          </ul>
+          <div class="blue" id="quick">
+            <div class="bg">
+              <div class="pic-cover"></div>
+              <div class="pic"></div>
+            </div>
+            <div class="txt">启动游戏</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
